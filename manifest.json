@@ -1,0 +1,7 @@
+{
+  "name": "VR Status",
+  "description": "Kat7ett statut dyalk 'VR' mnin kat7ll Discord (custom activity).",
+  "authors": [{ "name": "you" }],
+  "main": "index.js",
+  "vendetta": { "icon": "ic_game_controller_24px" }
+}
