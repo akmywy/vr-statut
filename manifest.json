@@ -1,7 +1,8 @@
 {
   "name": "VR Status",
-  "description": "Kat7ett statut dyalk 'VR' mnin kat7ll Discord (custom activity).",
-  "authors": [{ "name": "you" }],
+  "description": "Statut VR f Discord (custom activity).",
+  "authors": [{ "name": "akmywy" }],
   "main": "index.js",
+  "hash": "055fec1acc01b02a26c23ce3c6b7e4adb04589d1092b3d6c8eed11b32b8a8c9e",
   "vendetta": { "icon": "ic_game_controller_24px" }
 }
