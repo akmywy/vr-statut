@@ -1,14 +1,12 @@
-// VR Status v2 - plugin Revenge/Vendetta (plain JS, expression bla export)
+// VR Status v3 - m3a diagnostic toasts + fallback l-dispatcher
 (function () {
-  const { FluxDispatcher } = vendetta.metro.common;
-
   // ===== beddel hna =====
   const ACTIVITY_NAME = "VR";
   const DETAILS = "Dakhl f VR";
   const STATE = "";
   const SHOW_TIMER = true;
-  const APP_ID = "1";            // ay snowflake (string)
-  const REFRESH_MS = 30000;      // kay3awd yb3t l-activity kol 30s
+  const APP_ID = "1";
+  const REFRESH_MS = 30000;
   // =======================
 
   const SOCKET_ID = "VRStatus@Revenge";
@@ -22,13 +20,16 @@
     } catch (e) {}
   }
 
-  function setActivity(activity) {
-    FluxDispatcher.dispatch({
-      type: "LOCAL_ACTIVITY_UPDATE",
-      activity,
-      pid: 1608,
-      socketId: SOCKET_ID,
-    });
+  function getDispatcher() {
+    try {
+      const d = vendetta.metro.common.FluxDispatcher;
+      if (d && d.dispatch) return d;
+    } catch (e) {}
+    try {
+      const d = vendetta.metro.findByProps("dispatch", "subscribe");
+      if (d && d.dispatch) return d;
+    } catch (e) {}
+    return null;
   }
 
   function buildActivity() {
@@ -45,20 +46,35 @@
     return a;
   }
 
+  function setActivity(activity) {
+    const d = getDispatcher();
+    if (!d) {
+      toast("VR: ma l9itch Dispatcher");
+      return false;
+    }
+    d.dispatch({
+      type: "LOCAL_ACTIVITY_UPDATE",
+      activity,
+      pid: 1608,
+      socketId: SOCKET_ID,
+    });
+    return true;
+  }
+
   function push() {
     try {
       setActivity(buildActivity());
     } catch (e) {
-      toast("VR Status error: " + (e && e.message));
+      toast("VR error: " + (e && e.message ? e.message : String(e)));
     }
   }
 
   return {
     onLoad() {
-      toast("VR Status: tcharja");
-      // tsna chwiya bach Discord ykoun jahez, mn ba3d 3awd kol 30s
+      toast("VR Status v3: tcharja");
       startTimeout = setTimeout(() => {
         push();
+        toast("VR: tsift l-activity");
         interval = setInterval(push, REFRESH_MS);
       }, 3000);
     },

@@ -3,6 +3,6 @@
   "description": "Statut VR f Discord (custom activity).",
   "authors": [{ "name": "akmywy" }],
   "main": "index.js",
-  "hash": "7a802d2674430d75e8e367753f2877423f652c5c260125478d7967c8f02b942c",
+  "hash": "ead042ca8e45cc710ca9b87aa3a81db09373505f242b1b7668ade1ed9f9f1b4b",
   "vendetta": { "icon": "ic_game_controller_24px" }
 }
