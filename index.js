@@ -1,11 +1,11 @@
-// VR Status v3 - m3a diagnostic toasts + fallback l-dispatcher
+// VR Status v4 - m3a application_id 7a9i9i
 (function () {
   // ===== beddel hna =====
   const ACTIVITY_NAME = "VR";
   const DETAILS = "Dakhl f VR";
   const STATE = "";
   const SHOW_TIMER = true;
-  const APP_ID = "1";
+  const APP_ID = "1556117383955878049";
   const REFRESH_MS = 30000;
   // =======================
 
@@ -71,7 +71,7 @@
 
   return {
     onLoad() {
-      toast("VR Status v3: tcharja");
+      toast("VR Status v4: tcharja");
       startTimeout = setTimeout(() => {
         push();
         toast("VR: tsift l-activity");
